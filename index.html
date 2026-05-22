@@ -27,483 +27,16 @@
       }
     }
   </script>
-
-  <style>
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      background: #000;
-      color: #d0d0d0;
-      font-family: 'Share Tech Mono', monospace;
-      overflow-x: hidden;
-    }
-
-    /* Canvas energy wires */
-    #wire-canvas {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-    }
-
-    /* Scanlines */
-    body::after {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background: repeating-linear-gradient(0deg, transparent, transparent 2px,
-          rgba(0, 0, 0, 0.07) 2px, rgba(0, 0, 0, 0.07) 4px);
-      pointer-events: none;
-      z-index: 1;
-    }
-
-    /* Neon glows */
-    .neon-blue {
-      color: #00AAFF;
-      text-shadow: 0 0 6px #00AAFF, 0 0 20px #00AAFF88, 0 0 40px #00AAFF33;
-    }
-
-    .neon-gold {
-      color: #00AAFF;
-      text-shadow: 0 0 6px #00AAFF, 0 0 20px #00AAFF88, 0 0 40px #00AAFF33;
-    }
-
-    .neon-white {
-      text-shadow: 0 0 6px #fff8, 0 0 18px #fff3;
-    }
-
-    /* Flicker */
-    @keyframes flicker {
-
-      0%,
-      100% {
-        opacity: 1
-      }
-
-      91% {
-        opacity: 1
-      }
-
-      92% {
-        opacity: .3
-      }
-
-      93% {
-        opacity: 1
-      }
-
-      95% {
-        opacity: .7
-      }
-
-      96% {
-        opacity: 1
-      }
-    }
-
-    .flicker {
-      animation: flicker 7s infinite;
-    }
-
-    /* Pulse dots */
-    @keyframes pdot {
-
-      0%,
-      100% {
-        box-shadow: 0 0 4px #00AAFF, 0 0 10px #00AAFF
-      }
-
-      50% {
-        box-shadow: 0 0 10px #00AAFF, 0 0 24px #00AAFF
-      }
-    }
-
-    @keyframes pdotg {
-
-      0%,
-      100% {
-        box-shadow: 0 0 4px #00AAFF, 0 0 10px #00AAFF
-      }
-
-      50% {
-        box-shadow: 0 0 10px #00AAFF, 0 0 24px #00AAFF
-      }
-    }
-
-    .pulse-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #00AAFF;
-      animation: pdot 1.8s ease-in-out infinite;
-      display: inline-block;
-    }
-
-    .pulse-dot.gold {
-      background: #00AAFF;
-      animation: pdotg 1.8s ease-in-out infinite;
-    }
-
-    /* FadeUp */
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(26px)
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0)
-      }
-    }
-
-    .fade-up {
-      animation: fadeUp .65s ease both;
-    }
-
-    .d1 {
-      animation-delay: .05s
-    }
-
-    .d2 {
-      animation-delay: .15s
-    }
-
-    .d3 {
-      animation-delay: .25s
-    }
-
-    .d4 {
-      animation-delay: .35s
-    }
-
-    .d5 {
-      animation-delay: .45s
-    }
-
-    .d6 {
-      animation-delay: .55s
-    }
-
-    /* Marquee */
-    @keyframes marquee {
-      from {
-        transform: translateX(0)
-      }
-
-      to {
-        transform: translateX(-50%)
-      }
-    }
-
-    .marquee-inner {
-      animation: marquee 24s linear infinite;
-      white-space: nowrap;
-    }
-
-    /* Nav */
-    nav {
-      background: rgba(0, 0, 0, 0.88);
-      backdrop-filter: blur(12px);
-    }
-
-    .nav-link {
-      position: relative;
-      transition: color .3s;
-    }
-
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 0;
-      height: 1px;
-      background: #00AAFF;
-      box-shadow: 0 0 8px #00AAFF;
-      transition: width .3s;
-    }
-
-    .nav-link:hover {
-      color: #00AAFF;
-    }
-
-    .nav-link:hover::after {
-      width: 100%;
-    }
-
-    .nav-link.active {
-      color: #00AAFF;
-    }
-
-    .nav-link.active::after {
-      width: 100%;
-    }
-
-    /* Cards */
-    .project-card {
-      background: #080808;
-      border: 1px solid #1c1c1c;
-      position: relative;
-      overflow: hidden;
-      transition: transform .35s cubic-bezier(.22, .68, 0, 1.2),
-        border-color .35s, box-shadow .35s;
-    }
-
-    .project-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, #00AAFF, transparent);
-      opacity: 0;
-      transition: opacity .4s;
-    }
-
-    .project-card:hover::before {
-      opacity: 1;
-    }
-
-    .project-card:hover {
-      transform: translateY(-6px);
-      border-color: #00AAFF33;
-      box-shadow: 0 0 30px #00AAFF18, 0 4px 40px #00000080;
-    }
-
-    .project-card.g-hover:hover {
-      border-color: #00AAFF33;
-      box-shadow: 0 0 30px #00AAFF18, 0 4px 40px #00000080;
-    }
-
-    .project-card.g-hover::before {
-      background: linear-gradient(90deg, transparent, #00AAFF, transparent);
-    }
-
-    /* Corner brackets */
-    .c-tl,
-    .c-br {
-      position: absolute;
-      width: 11px;
-      height: 11px;
-    }
-
-    .c-tl {
-      top: 0;
-      left: 0;
-      border-top: 2px solid #00AAFF;
-      border-left: 2px solid #00AAFF;
-    }
-
-    .c-br {
-      bottom: 0;
-      right: 0;
-      border-bottom: 2px solid #00AAFF;
-      border-right: 2px solid #00AAFF;
-    }
-
-    .gold-corner .c-tl,
-    .gold-corner .c-br {
-      border-color: #00AAFF;
-    }
-
-    /* Card visual area */
-    .card-vis {
-      height: 155px;
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .card-vis-lg {
-      height: 195px;
-    }
-
-    /* Tags */
-    .tag {
-      display: inline-block;
-      border: 1px solid #00AAFF33;
-      color: #00AAFF;
-      font-size: .6rem;
-      padding: 2px 9px;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      font-family: 'Share Tech Mono', monospace;
-    }
-
-    .tag-g {
-      border-color: #00AAFF33;
-      color: #00AAFF;
-    }
-
-    /* Filters */
-    .fbtn {
-      border: 1px solid #ffffff12;
-      color: #ffffff35;
-      font-family: 'Share Tech Mono', monospace;
-      font-size: .65rem;
-      padding: 5px 18px;
-      letter-spacing: .15em;
-      text-transform: uppercase;
-      cursor: pointer;
-      background: transparent;
-      transition: all .3s;
-    }
-
-    .fbtn:hover {
-      color: #00AAFF;
-      border-color: #00AAFF44;
-    }
-
-    .fbtn.active {
-      color: #000;
-      background: #00AAFF;
-      border-color: #00AAFF;
-      box-shadow: 0 0 14px #00AAFFaa;
-    }
-
-    /* Neon buttons */
-    .btn-n {
-      border: 1px solid #00AAFF;
-      color: #00AAFF;
-      background: transparent;
-      font-family: 'Share Tech Mono', monospace;
-      font-size: .65rem;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      padding: 8px 22px;
-      cursor: pointer;
-      transition: all .3s;
-      box-shadow: 0 0 8px #00AAFF33;
-      text-decoration: none;
-      display: inline-block;
-    }
-
-    .btn-n:hover {
-      background: #00AAFF;
-      color: #000;
-      box-shadow: 0 0 22px #00AAFFbb;
-    }
-
-    .btn-nb {
-      border-color: #00AAFF;
-      color: #00AAFF;
-      box-shadow: 0 0 8px #00AAFF33;
-    }
-
-    .btn-nb:hover {
-      background: #00AAFF;
-      color: #000;
-      box-shadow: 0 0 22px #00AAFFbb;
-    }
-
-    /* Links */
-    .nl {
-      color: #00AAFF66;
-      font-size: .65rem;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border-bottom: 1px solid transparent;
-      transition: all .3s;
-    }
-
-    .nl:hover {
-      color: #00AAFF;
-      border-color: #00AAFF;
-      text-shadow: 0 0 8px #00AAFF;
-    }
-
-    .nl-g {
-      color: #00AAFF66;
-    }
-
-    .nl-g:hover {
-      color: #00AAFF;
-      border-color: #00AAFF;
-      text-shadow: 0 0 8px #00AAFF;
-    }
-
-    .devicon-tailwindcss-plain,
-    .devicon-tailwindcss-plain::before {
-      color: #00AAFF !important;
-      fill: #00AAFF !important;
-    }
-
-    /* Stat boxes */
-    .stat-box {
-      border: 1px solid #1e1e1e;
-      padding: 14px 22px;
-      position: relative;
-      background: #060606;
-    }
-
-    /* Profile Card */
-    .profile-card {
-      position: relative;
-      overflow: hidden;
-      transition: transform .35s cubic-bezier(.22, .68, 0, 1.2),
-        border-color .35s, box-shadow .35s;
-      border-color: #00AA0033;
-    }
-
-    .profile-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, #00AA00, transparent);
-      opacity: 0;
-      transition: opacity .4s;
-    }
-
-    .profile-card::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      width: 1px;
-      height: 100%;
-      background: linear-gradient(180deg, transparent, #00AA00, transparent);
-      opacity: 0;
-      transition: opacity .4s;
-    }
-
-    .profile-card:hover::before,
-    .profile-card:hover::after {
-      opacity: 1;
-    }
-
-    .profile-card:hover {
-      transform: translateY(-4px);
-      border-color: #00AA0044;
-      box-shadow: 0 0 30px #00AA0018, 0 4px 40px #00000080;
-    }
-  </style>
 </head>
 
-<body class="min-h-screen">
-  <canvas id="wire-canvas"></canvas>
+<body class="relative min-h-screen m-0 overflow-x-hidden bg-black text-[#d0d0d0] font-mono scroll-smooth">
+  <canvas id="wire-canvas" class="fixed inset-0 z-0 pointer-events-none"></canvas>
+  <div class="pointer-events-none fixed inset-0 z-[1] bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,rgba(0,0,0,0.07)_2px,rgba(0,0,0,0.07)_4px)]"></div>
 
-  <!-- ==================================================================== HERO ========================================================================================= -->
+  <!-- ==================================================================== HEADER ========================================================================================= -->
   <header class="relative z-10 px-8 md:px-16 pt-20 pb-14">
 
-    <div class="fade-up d1 profile-card flex flex-col md:flex-row items-center gap-6 mb-12 w-fit border border-white/10 bg-white/5 p-6 shadow-[0_0_40px_rgba(0,0,0,0.25)]">
+    <div class="relative overflow-hidden transition-transform duration-300 ease-[cubic-bezier(.22,.68,0,1.2)] hover:-translate-y-1 border border-white/10 bg-white/5 p-6 shadow-[0_0_40px_rgba(0,0,0,0.25)] flex flex-col md:flex-row items-center gap-6 mb-12">
       <img src="https://avatars.githubusercontent.com/u/274956009?v=4" alt="Foto de perfil" class="h-28 w-28 border-2 border-white/20 object-cover shadow-lg" />
       <div class="text-center md:text-left">
         <p class="font-mono text-sm uppercase tracking-[0.36em] text-white/40 mb-3">Sobre mim</p>
@@ -526,13 +59,13 @@
   <!-- ====================================================================== FILTERS ================================================================================ -->
   <section class="relative z-10 px-8 md:px-16 mt-12 flex flex-wrap gap-3 items-center">
     <span class="font-mono text-xs text-white/20 tracking-widest mr-2">FILTRAR:</span>
-    <button onclick="fc('all')" class="fbtn active" data-f="all">TODOS</button>
-    <button onclick="fc('web')" class="fbtn" data-f="web">WEB</button>
-    <!--<button onclick="fc('mobile')" class="fbtn" data-f="mobile">MOBILE</button>-->
-    <button onclick="fc('desktop')" class="fbtn" data-f="desktop">DESKTOP</button>
-    <button onclick="fc('game')" class="fbtn" data-f="game">GAME</button>
-    <button onclick="fc('pcb')" class="fbtn" data-f="pcb">PCB</button>
-    <!--<button onclick="fc('devops')" class="fbtn" data-f="devops">DEV/ DEVSECOPS</button>-->
+    <button onclick="fc('all')" class="fbtn px-4 py-2 border border-white/12 text-white/35 font-mono text-[0.65rem] uppercase tracking-[0.15em] bg-[#00AAFF] text-black border-[#00AAFF] shadow-[0_0_14px_rgba(0,170,255,0.66)] transition-all duration-300 hover:text-[#00AAFF] hover:border-[#00AAFF44]" data-f="all">TODOS</button>
+    <button onclick="fc('web')" class="fbtn px-4 py-2 border border-white/12 text-white/35 font-mono text-[0.65rem] uppercase tracking-[0.15em] bg-transparent transition-all duration-300 hover:text-[#00AAFF] hover:border-[#00AAFF44]" data-f="web">WEB</button>
+    <!--<button onclick="fc('mobile')" class="fbtn px-4 py-2 border border-white/12 text-white/35 font-mono text-[0.65rem] uppercase tracking-[0.15em] bg-transparent transition-all duration-300 hover:text-[#00AAFF] hover:border-[#00AAFF44]" data-f="mobile">MOBILE</button>-->
+    <button onclick="fc('desktop')" class="fbtn px-4 py-2 border border-white/12 text-white/35 font-mono text-[0.65rem] uppercase tracking-[0.15em] bg-transparent transition-all duration-300 hover:text-[#00AAFF] hover:border-[#00AAFF44]" data-f="desktop">DESKTOP</button>
+    <button onclick="fc('game')" class="fbtn px-4 py-2 border border-white/12 text-white/35 font-mono text-[0.65rem] uppercase tracking-[0.15em] bg-transparent transition-all duration-300 hover:text-[#00AAFF] hover:border-[#00AAFF44]" data-f="game">GAME</button>
+    <button onclick="fc('pcb')" class="fbtn px-4 py-2 border border-white/12 text-white/35 font-mono text-[0.65rem] uppercase tracking-[0.15em] bg-transparent transition-all duration-300 hover:text-[#00AAFF] hover:border-[#00AAFF44]" data-f="pcb">PCB</button>
+    <!--<button onclick="fc('devops')" class="px-4 py-2 border border-white/12 text-white/35 font-mono text-[0.65rem] uppercase tracking-[0.15em] bg-transparent transition-all duration-300 hover:text-[#00AAFF] hover:border-[#00AAFF44]" data-f="devops">DEV/ DEVSECOPS</button>-->
   </section>
 
 
@@ -550,15 +83,11 @@
      
      
       <!-- Loja de Roupas -->
-      <article data-cat="web" class="project-card fade-up d2 cursor-pointer group">
-        <div
-          style="position:absolute;top:0;left:0;width:11px;height:11px;border-top:2px solid  #00AAFF;border-left:2px solid  #00AAFF;z-index:2;">
-        </div>
-        <div
-          style="position:absolute;bottom:0;right:0;width:11px;height:11px;border-bottom:2px solid  #00AAFF;border-right:2px solid  #00AAFF;z-index:2;">
-        </div>
+      <article data-cat="web" class="relative overflow-hidden bg-[#080808] border border-[#1c1c1c] transition duration-300 ease-[cubic-bezier(.22,.68,0,1.2)] hover:-translate-y-1 hover:border-[#00AAFF33] hover:shadow-[0_0_30px_rgba(0,170,255,0.1),0_4_40px_rgba(0,0,0,0.5)] cursor-pointer group">
+        <div class="absolute top-0 left-0 w-[11px] h-[11px] border-t-[2px] border-l-[2px] border-[#00AAFF] z-10"></div>
+        <div class="absolute bottom-0 right-0 w-[11px] h-[11px] border-b-[2px] border-r-[2px] border-[#00AAFF] z-10"></div>
 
-        <div class="card-vis" style="background:linear-gradient(135deg,#050505,#001018);">
+        <div class="h-[155px] relative overflow-hidden flex items-center justify-center bg-[linear-gradient(135deg,#050505,#001018)]">
           <img src="" alt="">
         </div>
 
@@ -572,7 +101,7 @@
             E-commerce de moda responsiva, com filtros dinâmicos e integração com redes sociais.
           </p>
 
-          <div class="flex gap-5 mt-4"><a href="#" class="nl">Ver ↗</a></div>
+          <div class="flex gap-5 mt-4"><a href="#" class="text-[#00AAFF66] text-[0.65rem] tracking-[0.12em] uppercase no-underline border-b border-transparent transition-all duration-300 hover:text-[#00AAFF] hover:border-[#00AAFF] hover:shadow-[0_0_8px_#00AAFF]">Ver ↗</a></div>
         </div>
       </article>
 
@@ -585,15 +114,11 @@
 
 
       <!-- Clínica Médica -->
-      <article data-cat="web" class="project-card fade-up d3 cursor-pointer group">
-        <div
-          style="position:absolute;top:0;left:0;width:11px;height:11px;border-top:2px solid  #00AAFF;border-left:2px solid  #00AAFF;z-index:2;">
-        </div>
-        <div
-          style="position:absolute;bottom:0;right:0;width:11px;height:11px;border-bottom:2px solid  #00AAFF;border-right:2px solid  #00AAFF;z-index:2;">
-        </div>
+      <article data-cat="web" class="relative overflow-hidden bg-[#080808] border border-[#1c1c1c] transition duration-300 ease-[cubic-bezier(.22,.68,0,1.2)] hover:-translate-y-1 hover:border-[#00AAFF33] hover:shadow-[0_0_30px_rgba(0,170,255,0.1),0_4_40px_rgba(0,0,0,0.5)] cursor-pointer group">
+        <div class="absolute top-0 left-0 w-[11px] h-[11px] border-t-[2px] border-l-[2px] border-[#00AAFF] z-10"></div>
+        <div class="absolute bottom-0 right-0 w-[11px] h-[11px] border-b-[2px] border-r-[2px] border-[#00AAFF] z-10"></div>
 
-        <div class="card-vis" style="background:linear-gradient(135deg,#050505,#00080f);">
+        <div class="h-[155px] relative overflow-hidden flex items-center justify-center bg-[linear-gradient(135deg,#050505,#00080f)]">
           <img src="" alt="">
         </div>
 
@@ -606,7 +131,7 @@
           <p class="font-mono text-xs mt-2 leading-loose">
             Página para Clínicas médicas, com o portfolio do médico e suas redes sociais.
           </p>
-          <div class="flex gap-5 mt-4"><a href="#" target="_blank" class="nl">Ver ↗</a></div>
+          <div class="flex gap-5 mt-4"><a href="#" target="_blank" class="text-[#00AAFF66] text-[0.65rem] tracking-[0.12em] uppercase no-underline border-b border-transparent transition-all duration-300 hover:text-[#00AAFF] hover:border-[#00AAFF] hover:shadow-[0_0_8px_#00AAFF]">Ver ↗</a></div>
         </div>
       </article>
 
@@ -618,15 +143,11 @@
 
 
        <!-- Laboratório de Circuitos Lógicos -->
-      <article data-cat="pcb" class="project-card fade-up d3 cursor-pointer group">
-        <div
-          style="position:absolute;top:0;left:0;width:11px;height:11px;border-top:2px solid  #00AAFF;border-left:2px solid  #00AAFF;z-index:2;">
-        </div>
-        <div
-          style="position:absolute;bottom:0;right:0;width:11px;height:11px;border-bottom:2px solid  #00AAFF;border-right:2px solid  #00AAFF;z-index:2;">
-        </div>
+      <article data-cat="pcb" class="relative overflow-hidden bg-[#080808] border border-[#1c1c1c] transition duration-300 ease-[cubic-bezier(.22,.68,0,1.2)] hover:-translate-y-1 hover:border-[#00AAFF33] hover:shadow-[0_0_30px_rgba(0,170,255,0.1),0_4_40px_rgba(0,0,0,0.5)] cursor-pointer group">
+        <div class="absolute top-0 left-0 w-[11px] h-[11px] border-t-[2px] border-l-[2px] border-[#00AAFF] z-10"></div>
+        <div class="absolute bottom-0 right-0 w-[11px] h-[11px] border-b-[2px] border-r-[2px] border-[#00AAFF] z-10"></div>
 
-        <div class="card-vis" style="background:linear-gradient(135deg,#050505,#00080f);">
+        <div class="h-[155px] relative overflow-hidden flex items-center justify-center bg-[linear-gradient(135deg,#050505,#00080f)]">
           <img src="./Pcb/Laboratorio-de-Circuitos.png" width="100%">
         </div>
 
@@ -639,21 +160,17 @@
           <p class="font-mono text-xs mt-2 leading-loose">
             Página do meu Laboratório de Circuitos Lógicos para estruturação de PCB Designs.
           </p>
-          <div class="flex gap-5 mt-4"><a href="https://circuitverse.org/simulator/embed/laboratorio-de-circuitos" target="_blank" class="nl">Ver ↗</a></div>
+          <div class="flex gap-5 mt-4"><a href="https://circuitverse.org/simulator/embed/laboratorio-de-circuitos" target="_blank" class="text-[#00AAFF66] text-[0.65rem] tracking-[0.12em] uppercase no-underline border-b border-transparent transition-all duration-300 hover:text-[#00AAFF] hover:border-[#00AAFF] hover:shadow-[0_0_8px_#00AAFF]">Ver ↗</a></div>
         </div>
       </article>
 
 
       <!-- Arcade -->
-      <article data-cat="game" class="project-card fade-up d3 cursor-pointer group">
-        <div
-          style="position:absolute;top:0;left:0;width:11px;height:11px;border-top:2px solid  #00AAFF;border-left:2px solid  #00AAFF;z-index:2;">
-        </div>
-        <div
-          style="position:absolute;bottom:0;right:0;width:11px;height:11px;border-bottom:2px solid  #00AAFF;border-right:2px solid  #00AAFF;z-index:2;">
-        </div>
+      <article data-cat="game" class="relative overflow-hidden bg-[#080808] border border-[#1c1c1c] transition duration-300 ease-[cubic-bezier(.22,.68,0,1.2)] hover:-translate-y-1 hover:border-[#00AAFF33] hover:shadow-[0_0_30px_rgba(0,170,255,0.1),0_4_40px_rgba(0,0,0,0.5)] cursor-pointer group">
+        <div class="absolute top-0 left-0 w-[11px] h-[11px] border-t-[2px] border-l-[2px] border-[#00AAFF] z-10"></div>
+        <div class="absolute bottom-0 right-0 w-[11px] h-[11px] border-b-[2px] border-r-[2px] border-[#00AAFF] z-10"></div>
 
-        <div class="card-vis" style="background:linear-gradient(135deg,#050505,#00080f);">
+        <div class="h-[155px] relative overflow-hidden flex items-center justify-center bg-[linear-gradient(135deg,#050505,#00080f)]">
           <img src="./Game/Arcade.png" width="100%">
         </div>
 
@@ -666,7 +183,7 @@
           <p class="font-mono text-xs mt-2 leading-loose">
             Sejam bem vindo(a)(s) ao meu Arcade, onde você pode jogar vários jogos independentes ou em plataformas famosas que eu desenvolvi.
           </p>
-          <div class="flex gap-5 mt-4"><a href="https://makidextreme.github.io/Arcade/" target="_blank" class="nl">Ver ↗</a></div>
+          <div class="flex gap-5 mt-4"><a href="https://makidextreme.github.io/Arcade/" target="_blank" class="text-[#00AAFF66] text-[0.65rem] tracking-[0.12em] uppercase no-underline border-b border-transparent transition-all duration-300 hover:text-[#00AAFF] hover:border-[#00AAFF] hover:shadow-[0_0_8px_#00AAFF]">Ver ↗</a></div>
         </div>
       </article>
 
@@ -706,13 +223,13 @@
   <footer
     class="relative z-10 border-t border-white/5 px-8 md:px-16 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
     <div class="flex items-center gap-3">
-      <span class="pulse-dot gold"></span>
+      <span class="w-[7px] h-[7px] rounded-full bg-[#00AAFF] inline-block animate-[pulse_1.8s_ease-in-out_infinite] shadow-[0_0_4px_#00AAFF,0_0_10px_#00AAFF]"></span>
       <span class="font-mono text-xs text-white/18 tracking-widest">&copy; <span id="current-year"></span> DEV
         PROJECTS</span>
     </div>
     <div class="flex gap-8">
-      <a href="https://github.com/MarcosDAnton" target="_blank" class="nl">GitHub</a>
-      <a href="https://www.linkedin.com/in/marcos-antonio-d-silva-pereira-843446402/" target="_blank" class="nl">LinkedIn</a>
+      <a href="https://github.com/MarcosDAnton" target="_blank" class="text-[#00AAFF66] text-[0.65rem] tracking-[0.12em] uppercase no-underline border-b border-transparent transition-all duration-300 hover:text-[#00AAFF] hover:border-[#00AAFF] hover:shadow-[0_0_8px_#00AAFF]">GitHub</a>
+      <a href="https://www.linkedin.com/in/marcos-antonio-d-silva-pereira-843446402/" target="_blank" class="text-[#00AAFF66] text-[0.65rem] tracking-[0.12em] uppercase no-underline border-b border-transparent transition-all duration-300 hover:text-[#00AAFF] hover:border-[#00AAFF] hover:shadow-[0_0_8px_#00AAFF]">LinkedIn</a>
     </div>
   </footer>
 
@@ -720,9 +237,9 @@
 
 
     <!-- ==================================================================== TECNOLOGIAS ================================================================================ -->
-  <div id="tech-marquee" class="relative z-10 border-y border-white/5 py-4 overflow-hidden" style="background:rgba(0,170,255,0.03);">
+  <div id="tech-marquee" class="relative z-10 border-y border-white/5 py-4 overflow-hidden bg-[rgba(0,170,255,0.03)]">
     
-    <div id="tech-track-wrapper" class="absolute inset-0 flex items-center will-change-transform" style="transform: translateX(0);">
+    <div id="tech-track-wrapper" class="absolute inset-0 flex items-center will-change-transform translate-x-0">
      
       <!-- STACK DE TECNOLOGIAS -->
       <div id="tech-track" class="flex items-center gap-8 px-8 md:px-16 min-w-max">
@@ -855,8 +372,10 @@
 
     // FILTER
     function fc(cat) {
-      document.querySelectorAll('.fbtn').forEach(b => b.classList.remove('active'));
-      document.querySelector(`[data-f="${cat}"]`).classList.add('active');
+      const activeClasses = ['bg-[#00AAFF]', 'text-black', 'border-[#00AAFF]', 'shadow-[0_0_14px_rgba(0,170,255,0.66)]'];
+      document.querySelectorAll('.fbtn').forEach(b => b.classList.remove(...activeClasses));
+      const activeBtn = document.querySelector(`[data-f="${cat}"]`);
+      if (activeBtn) activeBtn.classList.add(...activeClasses);
       document.querySelectorAll('#pgrid article').forEach(card => {
         const match = cat === 'all' || card.dataset.cat === cat;
         card.style.transition = 'opacity .3s ease, transform .3s ease';
