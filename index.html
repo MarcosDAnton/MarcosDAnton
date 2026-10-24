@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MarcosDAnton</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome para os Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Configuração de cores personalizadas do Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'neon-yellow': '#e2e61d',
+                        'neon-cyan': '#00f3ff',
+                        'dark-bg': '#0b0e14',
+                        'card-bg': '#131722',
+                        'card-border': '#232838',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-dark-bg text-white min-h-screen font-sans antialiased selection:bg-neon-yellow selection:text-black">
+
+    <div class="max-w-5xl mx-auto px-4 py-8 md:py-12">
+        
+        <!-- HEADER -->
+        <header class="flex flex-col md:flex-row items-center gap-6 md:gap-8 mb-12 text-center md:text-left">
+              <div class="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 flex-shrink-0 drop-shadow-[0_0_15px_rgba(226,230,29,0.5)]">
+                    <!-- Imagem do Logo indicada -->
+                <img src="https://lh3.googleusercontent.com/a/ACg8ocKa_N0KZc_EoVUoPXTXKZjDlpKKL7aneuwynwga3DpqW9yIUKFd=s120-c" alt="MarcosDAnton Logo" class="w-full h-full object-contain rounded-full">
+            </div>
+            <div>
+            <p class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-wide">
+                    MarcosDAnton
+            </p>
+            <br><br >
+      
+                <p class="text-gray-300 text-base sm:text-lg md:text-xl mt-2 max-w-2xl font-medium">
+                    &nbsp;&nbsp;&nbsp;&nbsp;Bem vindo a minha homepage! Opa prazer eu sou o Marcos, e atualmente trabalho como freelancer em Engenharia De Computação e Administração a qual vou me formar logo e atuo profissionalmente como Bombeiro Civil, sou apaixonado por criar soluções tecnológicas e criar conteúdos. Quando não estou trabalhando eu gosto de jogar e ver séries ou inventar algo na cozinha! 🍳💻
+                </p>
+        </div>
+        </header>
+
+       
+
+        <!-- CARDS -->
+        <h2 class="text-neon-yellow text-xl font-bold uppercase tracking-wider mb-6 text-center sm:text-left"><span class="text-blue-300">Conexões</span>&nbsp;& Mais</h2>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-16">    
+           
+            <!-- YouTube -->
+            <a href="https://www.youtube.com/@MarcosDAnton" target="_blank" class="bg-[#c4302b] rounded-xl p-5 flex flex-col justify-between gap-5 transition-all hover:-translate-y-1 group">
+                <div class="flex gap-4 items-start">
+                    <div>
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e1/Logo_of_YouTube_%282015-2017%29.svg" class="w-16">
+                        <br>
+                        <p class="text-xs text-red-100 opacity-90 mt-1 leading-relaxed">Canal de vídeos, shorts de comentários sobre tecnologias, jogos, e outros assuntos e novidades do canal durante a semana!</p>
+                    </div>
+                </div>
+                <div class="bg-neon-yellow text-black text-center py-2.5 rounded-md font-bold text-sm uppercase tracking-wide group-hover:bg-white transition-colors w-full mt-auto">Ver</div>
+            </a>
+
+
+
+              <!-- TikTok -->
+            <a href="https://www.tiktok.com/@marcosdanton" target="_blank" class="bg-[#000000] rounded-xl p-5 flex flex-col justify-between gap-5 transition-all hover:-translate-y-1 group">
+                <div class="flex gap-4 items-start">
+                    <div>
+                        <img src="https://img.magnific.com/vetores-premium/logo-do-tik-tok_578229-290.jpg?semt=ais_hybrid&w=740&q=80" class="w-14">
+                        <br>
+                        <p class="text-xs text-black-100 opacity-90 mt-1 leading-relaxed">Clipes de dicas!</p>
+                    </div>
+                </div>
+                <div class="bg-neon-yellow text-black text-center py-2.5 rounded-md font-bold text-sm uppercase tracking-wide group-hover:bg-white transition-colors w-full mt-auto">Ver</div>
+            </a>
+
+                <!-- Dev -->
+            <a href="https://marcosdanton.github.io/Dev/" target="_blank" class="bg-[#000000] rounded-xl p-5 flex flex-col justify-between gap-5 transition-all hover:-translate-y-1 group">
+                <div class="flex gap-4 items-start">
+                    <div>
+                        <img src="https://github.com/MarcosDAnton/Dev/raw/main/Dev-Logo-removebg-preview.png" class="w-14">
+                        <br>
+                        <p class="text-xs text-black-100 opacity-90 mt-1 leading-relaxed">Este é o meu portífolio em desenvolvimentos de softwares/ hardwares!</p>
+                    </div>
+                </div>
+                <div class="bg-neon-yellow text-black text-center py-2.5 rounded-md font-bold text-sm uppercase tracking-wide group-hover:bg-white transition-colors w-full mt-auto">Ver</div>
+            </a>
+
+               <!-- Dat -->
+            <a href="https://marcosdanton.github.io/Dat/" target="_blank" class="bg-[#000000] rounded-xl p-5 flex flex-col justify-between gap-5 transition-all hover:-translate-y-1 group">
+                <div class="flex gap-4 items-start">
+                    <div>
+                        <img src="https://github.com/MarcosDAnton/Dat/raw/main/Dat-Logo-removebg-preview.png" class="w-14">
+                        <br>
+                        <p class="text-xs text-black-100 opacity-90 mt-1 leading-relaxed">Este é o meu portífolio em analise e ciência de dados!</p>
+                    </div>
+                </div>
+                <div class="bg-neon-yellow text-black text-center py-2.5 rounded-md font-bold text-sm uppercase tracking-wide group-hover:bg-white transition-colors w-full mt-auto">Ver</div>
+            </a>
+
+
+              <!-- Des -->
+            <a href="https://marcosdanton.github.io/Des/" target="_blank" class="bg-[#000000] rounded-xl p-5 flex flex-col justify-between gap-5 transition-all hover:-translate-y-1 group">
+                <div class="flex gap-4 items-start">
+                    <div>
+                        <img src="https://github.com/MarcosDAnton/Des/raw/main/Des-Logo-removebg-preview.png" class="w-14">
+                        <br>
+                        <p class="text-xs text-black-100 opacity-90 mt-1 leading-relaxed">Este é o meu portífolio em designs!</p>
+                    </div>
+                </div>
+                <div class="bg-neon-yellow text-black text-center py-2.5 rounded-md font-bold text-sm uppercase tracking-wide group-hover:bg-white transition-colors w-full mt-auto">Ver</div>
+            </a>
+
+
+               <!-- Def -->
+            <a href="https://marcosdanton.github.io/Def/" target="_blank" class="bg-[#000000] rounded-xl p-5 flex flex-col justify-between gap-5 transition-all hover:-translate-y-1 group">
+                <div class="flex gap-4 items-start">
+                    <div>
+                        <img src="https://github.com/MarcosDAnton/Def/raw/main/Def-removebg-preview.png" class="w-14">
+                        <br>
+                        <p class="text-xs text-black-100 opacity-90 mt-1 leading-relaxed">Este é o meu portífolio em defesas cibernéticas!</p>
+                    </div>
+                </div>
+                <div class="bg-neon-yellow text-black text-center py-2.5 rounded-md font-bold text-sm uppercase tracking-wide group-hover:bg-white transition-colors w-full mt-auto">Ver</div>
+            </a>
+
+            <!-- MakiD -->
+            <a href="https://makiiid.github.io/MakiD/" target="_blank" class="bg-[#000000] rounded-xl p-5 flex flex-col justify-between gap-5 transition-all hover:-translate-y-1 group">
+                <div class="flex gap-4 items-start">
+                    <div>
+                        <img src="https://makiiid.github.io/MakiD/MakiD-Icon.png" class="w-20">
+                        <br>
+                        <p class="text-xs text-black-100 opacity-90 mt-1 leading-relaxed">Este é o meu canal de gameplays e jogos no geral! Meu filhote!</p>
+                    </div>
+                </div>
+                <div class="bg-neon-yellow text-black text-center py-2.5 rounded-md font-bold text-sm uppercase tracking-wide group-hover:bg-white transition-colors w-full mt-auto">Ver</div>
+            </a>
+         
+
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="border-t border-zinc-800 pt-6 flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left text-sm text-gray-400">
+            <p>&copy; <span id="year"></span> Copyright - Todos os direitos reservados.</p>
+            <p class="text-sm text-gray-400">Minhas redes socias</p>
+
+            <div class="flex gap-6 text-xl">
+                <a href="https://github.com/MarcosDAnton" target="_blank" class="hover:text-neon-yellow transition-colors" aria-label="GitHub"><img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/github-white-icon.png" class="w-4"></a>
+               
+                <a href="https://discord.com/channels/@marcodanton" target="_blank" class="hover:text-neon-yellow transition-colors" aria-label="Discord"><img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/discord-color-icon.png" class="w-4"></a>   
+                
+                <a href="https://www.instagram.com/m/marcosdanton.ofc" target="_blank" class="hover:text-neon-yellow transition-colors" aria-label="Instagram"><img src="https://upload.wikimedia.org/wikipedia/commons/a/ac/Instagram-Gradient-Logo-PNG.png" class="w-4"></a>   
+
+                <a href="https://api.whatsapp.com/send/?phone=5521964986068&text&type=phone_number&app_absent=0" target="_blank" class="hover:text-neon-yellow transition-colors" aria-label="Instagram"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/3840px-WhatsApp.svg.png?utm_source=pt.wikipedia.org&utm_campaign=index&utm_content=thumbnail" class="w-4"></a>   
+                
+                <a href="https://www.linkedin.com/in/marcosdanton/" target="_blank" class="hover:text-neon-yellow transition-colors" aria-label="Instagram"><img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/8/81/LinkedIn_icon.svg/3840px-LinkedIn_icon.svg.png?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=thumbnail" class="w-4"></a>   
+                
+                
+            </div>
+        </footer>
+
+    </div>
+
+    <script>
+        (function setYear() {
+            var y = document.getElementById('year');
+            if (y) y.textContent = new Date().getFullYear();
+        })();
+    </script>
+
+</body>
+</html>
